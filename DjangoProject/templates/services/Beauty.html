@@ -1,0 +1,319 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beauty</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    /* Global Styles */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      /* Black background */
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 80px;
+      background: #000000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      left: 0;
+      z-index: 999;
+      top: 0;
+    }
+
+    .logo {
+      width: 40px;
+      /* adjust the width to fit the navbar */
+      height: 40px;
+      /* adjust the height to fit the navbar */
+      margin: 10px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      margin-right: 0;
+    }
+
+    .search form {
+      display: flex;
+      margin: 0;
+    }
+
+    .search input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      outline: none;
+      border-radius: 5px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    .search input:hover {
+      border: 1px solid #72a0d4;
+    }
+
+    .search button {
+      padding: 10px;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      color: #333;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    .search button:hover {
+      background-color: #ccc;
+    }
+
+    #navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #navbar li {
+      list-style: none;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    #navbar li a {
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      transition: 0.3s ease;
+    }
+
+    #navbar li a:hover,
+    #navbar li a.active {
+      color: white;
+    }
+
+    #navbar li a.active::after,
+    #navbar li a:hover::after {
+      content: "";
+      width: 30%;
+      height: 2px;
+      background: white;
+      position: absolute;
+      bottom: -4px;
+      left: 20px;
+    }
+  </style>
+  </head>
+
+  <body>
+    <section id="header">
+      <a href="#"><img src="{% static 'img/logo2.jpg' %}" class="logo" alt="Logo" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a class="active" href="{% url 'beauty_services' %}">Beauty</a></li>
+          <li><a href="{% url 'household_services' %}">Household</a></li>
+          <div class="search">
+            <form onsubmit="return false;">
+              <!-- Prevent default form submission -->
+              <input type="text" id="search-input" placeholder="Search..." onkeyup="filterServices()" />
+              <button type="submit">Go</button>
+            </form>
+          </div>
+          <li>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li>
+            <a href="Account.html"><i class="fa-regular fa-user"></i></a>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="SFW" class="container my-4">
+      <h1 class="mb-4">Salon for Women</h1>
+      <div class="row" id="service-container">
+        <!-- Card 1 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src="{% static 'img/Haircut W.jpg'%}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Haircut for womens</h5>
+              <p class="card-text">Price: ₹5</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/Manicure.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Manicure</h5>
+              <p class="card-text">Price: ₹30</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/Pedicure.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Pedicure</h5>
+              <p class="card-text">Price: ₹25</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/Facial.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Facial</h5>
+              <p class="card-text">Price: ₹15</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="SFM" class="container my-4">
+      <h1 class="mb-4">Salon for Men</h1>
+      <div class="row" id="service-container">
+        <!-- Card 1 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/Haircut M.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Haircut</h5>
+              <p class="card-text">Price: ₹20</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/FacialM.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Facial</h5>
+              <p class="card-text">Price: ₹30</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/Menicure M.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Manicure</h5>
+
+              <p class="card-text">Price: ₹25</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%">
+            <img src={% static 'img/HaircolorM.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Haircolor </h5>
+              <p class="card-text">Price: ₹15</p>
+              <a href="#" class="btn btn-dark">Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Search and filter function
+      function filterServices() {
+        const searchInput = document
+          .getElementById("search-input")
+          .value.toLowerCase(); // Get the search input
+        const cards = document.querySelectorAll(".card"); // Get all service cards
+
+        cards.forEach((card) => {
+          const title = card
+            .querySelector(".card-title")
+            .innerText.toLowerCase(); // Get the title of each card
+          const price = card
+            .querySelector(".card-text")
+            .innerText.toLowerCase(); // Get the price of each card
+
+          // Show card if title or price matches search input, else hide it
+          if (title.includes(searchInput) || price.includes(searchInput)) {
+            card.parentElement.style.display = ""; // Show card
+          } else {
+            card.parentElement.style.display = "none"; // Hide card
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Add event listeners to all "Add" buttons
+        document.querySelectorAll(".btn-dark").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent default anchor behavior
+
+            // Get the details of the service from the card
+            const card = event.target.closest(".card");
+            const title = card.querySelector(".card-title").innerText;
+            const price = card
+              .querySelector(".card-text")
+              .innerText.replace("Price: ₹", "");
+            const imgSrc = card.querySelector(".card-img-top").src;
+
+            // Create a service object
+            const service = {
+              title,
+              price: parseFloat(price),
+              imgSrc,
+              quantity: 1,
+            };
+
+            // Store the service in local storage
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existingService = cart.find(
+              (item) => item.title === service.title
+            );
+            if (existingService) {
+              existingService.quantity += 1; // Increment quantity if already in cart
+            } else {
+              cart.push(service); // Add new service to the cart
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${service.title} added to cart!`);
+          });
+        });
+      });
+    </script>
+  </body>
+
+  </html>
