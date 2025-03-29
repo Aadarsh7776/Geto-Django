@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -82,10 +81,15 @@ WSGI_APPLICATION = 'GETO.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'geto',  # Replace with your database name
+        'USER': 'root',     # Replace with your MySQL username
+        'PASSWORD': 'OMKAR@2024',  # Replace with your MySQL password
+        'HOST': 'localhost',   # Use '127.0.0.1' if running locally
+        'PORT': '3306',        # Default MySQL port
     }
 }
+
 
 
 # Password validation

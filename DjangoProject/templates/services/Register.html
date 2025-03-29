@@ -1,0 +1,137 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="login.css" />
+          <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <!-- Link to your CSS -->
+    <py-script>
+        from js import document, alert, window, localStorage, JSON
+
+        def register(event):
+            event.preventDefault() #Prevent form default submission.
+            username = document.getElementById("username").value
+            email = document.getElementById("email").value
+            password = document.getElementById("password").value
+            confirm_password = document.getElementById("confirm-password").value
+
+            if password != confirm_password:
+                alert("Passwords do not match. Please try again.")
+                return
+
+            alert(f"Registration successful! Welcome, {username}!")
+            window.location.href = "login.html"
+
+        def login(event):
+            event.preventDefault()
+            username = document.getElementById("username").value
+            password = document.getElementById("password").value
+
+            website_username = "Aadarsh"
+            website_password = "12345"
+
+            if username == website_username and password == website_password:
+                alert("Login successful!")
+                window.location.href = "index.html"
+            else:
+                alert("Invalid username or password. Please try again.")
+
+        def forgot_password():
+            email = window.prompt("Please enter your registered email address:")
+            if email:
+                alert(f"A password reset link has been sent to {email}.")
+            else:
+                alert("Email address cannot be empty.")
+
+        def add_to_cart(event):
+            event.preventDefault()
+            card = event.target.closest(".card")
+            title = card.querySelector(".card-title").innerText
+            price = float(card.querySelector(".card-text").innerText.replace("Price: $", ""))
+            imgSrc = card.querySelector(".card-img-top").src
+
+            service = {
+                "title": title,
+                "price": price,
+                "imgSrc": imgSrc,
+                "quantity": 1,
+            }
+
+            cart_str = localStorage.getItem("cart")
+            cart = JSON.parse(cart_str) if cart_str else []
+
+            existing_service = next((item for item in cart if item["title"] == service["title"]), None)
+            if existing_service:
+                existing_service["quantity"] += 1
+            else:
+                cart.append(service)
+
+            localStorage.setItem("cart", JSON.stringify(cart))
+            alert(f"{service['title']} added to cart!")
+
+        document.getElementById("register-btn").addEventListener("click", register)
+
+        for button in document.querySelectorAll(".btn-dark"):
+            button.addEventListener("click", add_to_cart)
+
+    </py-script>
+  </head>
+  <body>
+    <section id="header">
+      <a href="#"><img src="img/logo1.jpg" class="logo" alt="Logo" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="Beauty.html">Beauty</a></li>
+          <li><a href="Household.html">Household</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="login-container">
+      <h2>Register</h2>
+      <form onsubmit="register(); return false;">
+        <!-- Call register on form submission -->
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter Username"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter Email" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm Password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn">Register</button>
+        <p class="register-text">
+          Already have an account? <a href="login.html">Login Here</a>
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

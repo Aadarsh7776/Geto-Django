@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome to Geto</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    text-align: center;
+    padding: 30px;
+    border: 2px solid #000000;
+    background-color: #000000;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+img {
+    width: 150px;
+    height: auto;
+    margin: 20px 0;
+    border: 2px solid #000000;
+
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #111;
+    background-color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+</style>
+</head>
+<body>
+    <section id="container">
+        <h1>WELCOME TO</h1>
+        <img src="img/logo2.jpg" alt="Geto Logo">
+        <div class="links">
+            <a href="login.html" class="btn">Login</a>
+            <a href="Register page.html" class="btn">Register</a>
+        </div>
+    </section>
+</body>
+</html>
